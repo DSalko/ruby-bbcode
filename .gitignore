@@ -1,4 +1,5 @@
 *.gem
 .project
+.bundle
 todo
 rdoc

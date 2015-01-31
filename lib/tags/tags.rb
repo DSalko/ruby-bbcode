@@ -5,6 +5,10 @@ module RubyBBCode
     # All of these entrys are represented as @dictionary in the classes (or as the variable tags)
     # A single item from this file (eg the :b entry) is refered to as a @definition
     @@tags = {
+      :p => {
+        :html_open => '<p>', :html_close => '</p>',
+        :description => 'Paragraph',
+        :example => 'This is [p]paragraph[/p].'},
       :b => {
         :html_open => '<strong>', :html_close => '</strong>',
         :description => 'Make text bold',

@@ -17,6 +17,7 @@ module RubyBBCode
   # The method parameter determines whether the tags parameter needs to be used to blacklist (when set to :disable) or whitelist (when not set to :disable) the list of BBCode tags
   # The method raises an exception when the text could not be parsed due to errors
   def self.to_html(text, escape_html = true, additional_tags = {}, method = :disable, *tags)
+    text = add_paragraphs( text )
     parse(text, escape_html, additional_tags, method, *tags)
     use_tags = determine_applicable_tags(additional_tags, method, *tags)
 
@@ -24,6 +25,10 @@ module RubyBBCode
     raise @tag_sifter.errors.join(', ') unless @tag_sifter.valid?
 
     @tag_sifter.bbtree.to_html(use_tags)
+  end
+
+  def self.add_paragraphs(string)
+    string.gsub("\r","").split("\n\n").map {|s| "[p]#{s}[/p]"}.join("")
   end
 
   # This method converts the given text (with BBCode tags) into a HTML representation
