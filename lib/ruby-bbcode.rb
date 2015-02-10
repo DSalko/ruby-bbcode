@@ -28,7 +28,7 @@ module RubyBBCode
   end
 
   def self.add_paragraphs(string)
-    string.gsub("\r","").split("\n\n").map {|s| "[p]#{s}[/p]"}.join("")
+    string.gsub("\r","").split(/\n\s*\n/).map {|s| "[p]#{s}[/p]"}.join("")
   end
 
   # This method converts the given text (with BBCode tags) into a HTML representation
