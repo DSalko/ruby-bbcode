@@ -5,6 +5,9 @@ class RubyBbcodeHtmlTest < Minitest::Test
   def test_multiline
     assert_equal "line1<br />\nline2", "line1\nline2".bbcode_to_html
     assert_equal "line1<br />\nline2", "line1\r\nline2".bbcode_to_html
+    assert_equal "<p>line1</p><p>line2</p>", "line1\r\n\r\nline2".bbcode_to_html
+    assert_equal "<p>line1</p><p>line2</p>", "line1\r\n    \r\nline2".bbcode_to_html
+    assert_equal "<p>line1</p><p><strong>line2</strong></p>", "line1\r\n\r\n[b]line2[/b]".bbcode_to_html
   end
 
   def test_strong
