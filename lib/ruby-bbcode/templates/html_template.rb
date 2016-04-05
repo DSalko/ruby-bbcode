@@ -18,8 +18,12 @@ module RubyBBCode::Templates
     # Newlines are converted to html <br /> syntax before being returned.
     def self.convert_text(node)
       return '' if node[:text].nil?
+      # add p tags
+      sub_result = node[:text].gsub("\r","").split(/\n\s*\n/)
+      result = sub_result.count > 1 ? sub_result.map {|s| "<p>#{s}</p>"}.join("") : node[:text]
       # convert_newlines_to_br
-      node[:text].gsub("\r\n", "\n").gsub("\n", "<br />\n")
+      result = result.gsub("\r\n", "\n").gsub("\n", "<br />\n")
+      result
     end
 
     def inlay_between_text!

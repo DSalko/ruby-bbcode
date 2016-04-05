@@ -1,3 +1,4 @@
+require 'pry'
 require 'ruby-bbcode'
 require "minitest/autorun"
 
