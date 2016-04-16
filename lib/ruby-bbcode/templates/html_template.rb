@@ -19,6 +19,7 @@ module RubyBBCode::Templates
     def self.convert_text(node)
       return '' if node[:text].nil?
       # add p tags
+      binding.pry
       sub_result = node[:text].gsub("\r","").split(/\n\s*\n/)
       result = sub_result.count > 1 ? sub_result.map {|s| "<p>#{s}</p>"}.join("") : node[:text]
       # convert_newlines_to_br
